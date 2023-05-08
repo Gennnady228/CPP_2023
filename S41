@@ -1,0 +1,19 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+// Функция, считающая квадрат суммы аргументов
+float squared_sum(float x, float y) {
+    return (x+y)*(x+y);
+}
+
+int main()
+{
+    cout << "Квадрат суммы 6 и -2 равен " << squared_sum(6, -2) << endl;
+    cout << "Квадрат суммы 2.34 и 0.123 равен " << squared_sum(2.34, 0.123) << endl;
+
+    return 0;
+}
