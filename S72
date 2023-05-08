@@ -1,0 +1,58 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+//класс кредитной карточки
+class CreditCard{
+    public:
+        int Number;     //номер карты
+        float Balance;  //баланс карты
+        CreditCard(int num, float bal) : Number(num), Balance(bal) {}   // конструктор
+        void put(float amount) { Balance += amount; }                   // метод для пополнения баланса
+        bool take(float amount) {                                       // метод для снятия средств
+            if (Balance >= amount) {
+                Balance -= amount;
+                return true;
+            } else {
+                cout << "Недостаточно средств!" << endl;
+                return false;
+            }
+        }
+};
+
+// метод для перевода средств с карты с1 на с2
+bool Transfer(CreditCard* c1, CreditCard* c2, float v){
+            if (c1->Number == c2->Number){
+                cout << "Номера карт совпадают. Операция невозможна." << endl;
+                return false;
+            } else if (c1->Balance < v) {
+                cout << "На карте недостаточно средств для перевода. Операция невозможна." << endl;
+                return false;
+            } else {
+                c1->take(v);
+                c2->put(v);
+                cout << "Операция проведена успешно!" << endl;
+                return true;
+            }
+        }
+
+int main()
+{    
+    CreditCard* c1 = new CreditCard(8888, 100500);
+    cout << "Создана карта с номером " << c1->Number << ", на счету которой лежит " << c1->Balance << " рублей." << endl;    
+    CreditCard* c2 = new CreditCard(1111, 100);
+    cout << "Создана карта с номером " << c2->Number << ", на счету которой лежит " << c2->Balance << " рублей." << endl;
+    cout << "Попытаемся перевести 100 рублей с карты с номером " << c1->Number << " на неё же." << endl;
+    Transfer(c1, c1, 100);
+    cout << "Попытаемся перевести 1 000 000 рублей с карты с номером " << c1->Number << " на карту с номером " << c2->Number << endl;
+    Transfer(c1, c2, 1000000);
+    cout << "Попытаемся перевести 1 000 рублей с карты с номером " << c1->Number << " на карту с номером " << c2->Number << endl;
+    Transfer(c1, c2, 1000);
+    cout << "Текущий баланс кврты с номером " << c1->Number << " - " << c1->Balance << endl;
+    cout << "Текущий баланс кврты с номером " << c2->Number << " - " << c2->Balance << endl << endl;
+    
+    return 0;
+}
