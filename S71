@@ -1,0 +1,38 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+//класс кредитной карточки
+class CreditCard{
+    public:
+        int Number;     //номер карты
+        float Balance;  //баланс карты
+        CreditCard(int num, float bal) : Number(num), Balance(bal) {}   // конструктор
+        void put(float amount) { Balance += amount; }                   // метод для пополнения баланса
+        bool take(float amount) {                                       // метод для снятия средств
+            if (Balance >= amount) {
+                Balance -= amount;
+                return true;
+            } else {
+                cout << "Недостаточно средств!" << endl;
+                return false;
+            }
+        }
+};
+
+int main()
+{    
+    CreditCard* c1 = new CreditCard(8888, 100500);
+    cout << "Создана карта с номером " << c1->Number << ", на счету которой лежит " << c1->Balance << " рублей." << endl;
+    cout << "Снимем 500 рублей и положим 200 000 на счет" << endl;
+    c1->take(500);
+    c1->put(200000);
+    cout << "Текущий баланс: " << c1->Balance << ". Попытаемся снять 1 000 000 рублей" << endl;
+    c1->take(1000000);
+    cout << endl;
+        
+    return 0;
+}
