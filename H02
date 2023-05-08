@@ -1,0 +1,55 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+// Класс комплексных чисел
+class Complex {
+public:
+    Complex(float real, float imag) : real(real), imag(imag) {} // конструктор
+
+    float real;
+    float imag;
+
+    // Перегрузка операции сложения
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imag + other.imag);
+    }
+
+    // Перегрузка операции вычитания
+    Complex operator-(const Complex& other) const {
+        return Complex(real - other.real, imag - other.imag);
+    }
+
+    // Перегрузка операции умножения
+    Complex operator*(const Complex& other) const {
+        return Complex(real * other.real - imag * other.imag, real * other.imag + imag * other.real);
+    }
+
+    // Перегрузка операции деления
+    Complex operator/(const Complex& other) const {
+        double denominator = other.real * other.real + other.imag * other.imag;
+        return Complex((real * other.real + imag * other.imag) / denominator, (imag * other.real - real * other.imag) / denominator);
+    }
+};
+
+int main()
+{
+    Complex z1(1.0, 2.0);
+    Complex z2(3.0, 4.0);
+    cout << "Создадим два числа z1 = " << z1.real << " + " << z1.imag << "i и z2 = " << z2.real << " + " << z2.imag << "i" << endl;
+    
+    Complex z3 = z1 + z2;
+    Complex z4 = z1 - z2;
+    Complex z5 = z1 * z2;
+    Complex z6 = z1 / z2;
+
+    cout << "z1 + z2 = " << z3.real << " + " << z3.imag << "i" << endl;
+    cout << "z1 - z2 = " << z4.real << " + " << z4.imag << "i" << endl;
+    cout << "z1 * z2 = " << z5.real << " + " << z5.imag << "i" << endl;
+    cout << "z1 / z2 = " << z6.real << " + " << z6.imag << "i" << endl;
+    
+    return 0;
+}
