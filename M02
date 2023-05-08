@@ -1,0 +1,19 @@
+#include <iostream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+// функция, считающая площадь правильного n-угольника
+float getSquare(float a, int N){
+    return (N * a*a) / (4 * tan(M_PI / N));
+}
+
+int main()
+{    
+    cout << "Площадь правильного треугольника со сторонами, равными 5: " << getSquare(5, 3) << endl;
+    cout << "Площадь правильного 6-угольника со сторонами, равными 5: " << getSquare(5, 6) << endl << endl;
+    
+    return 0;
+}
