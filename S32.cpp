@@ -5,10 +5,12 @@ using namespace std;
 
 int main() {
     char str[100];
-    cout << "Enter a string: ";
-    cin.getline(str, 100);
     int len = strlen(str);
     char* ptr = str;
+
+    cout << "Enter a string: ";
+    cin.getline(str, 100);
+
     for (int i = 0; i < len; i++) {
         if (*ptr >= 'a' && *ptr < 'z') {
             *ptr = *ptr + 1;
@@ -26,7 +28,7 @@ int main() {
     }
     cout << "New string: " << str;
     return 0;
-}
+
 
 
 
